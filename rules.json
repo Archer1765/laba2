@@ -1,0 +1,177 @@
+{
+    "ask-temp": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["temp", "eq", "null"] ],
+        "actions": [ {"func": "ask_int", "arg_1": "temp", "arg_2": "Какая у Вас температура: "} ]
+    },
+    "ask-heaviness-in-stomach": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["stomach", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "stomach", "arg_2": "Есть ли у Вас тяжесть в желудке? (yes/no): "} ]
+    },
+    "ask-diarrhea": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["diarrhea", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "diarrhea", "arg_2": "Есть ли у Вас диарея? (yes/no): "} ]
+    },
+    "ask-loss-of-sense-of-smell": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["sense", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "sense", "arg_2": "Вы потеряли обоняние? (yes/no): "} ]
+    },
+    "ask-dry-hard-crusts": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["crusts", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "crusts", "arg_2": "Есть ли у Вас сухая твердая корочка на коже? (yes/no): "} ]
+    },
+    "ask-burning-pain": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["pain", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "pain", "arg_2": "Ощущаете ли Вы жгучую боль на коже? (yes/no): "} ]
+    },
+    "ask-slouching": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["slouching", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "slouching", "arg_2": "Есть ли у Вас сутулость? (yes/no): "} ]
+    },
+    "ask-curvature-of-spine": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["curvature", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "curvature", "arg_2": "Есть ли у Вас искривление позвоночника? (yes/no): "} ]
+    },
+    "ask-bleeding-gums": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["gums", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "gums", "arg_2": "Есть ли у Вас кровоточивость десен? (yes/no): "} ]
+    },
+    "ask-changing-color-of-tooth-enamel": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["changing-color", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "changing-color", "arg_2": "Есть ли у Вас изменение цвета зубной эмали? (yes/no): "} ]
+    },
+    "ask-insufficient-thickness-of-enamel-layer": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["insufficient-thickness", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "insufficient-thickness", "arg_2": "Есть ли у Вас недостаточная толщина слоя эмали? (yes/no): "} ]
+    },
+    "ask-fatigue": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["fatigue", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "fatigue", "arg_2": "Есть ли у Вас усталость? (yes/no): "} ]
+    },
+    "ask-change-in-appetite": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["appetite", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "appetite", "arg_2": "Есть ли у Вас изменение аппетита? (yes/no): "} ]
+    },
+    "ask-muscle-pain": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["muscle-pain", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "muscle-pain", "arg_2": "Есть ли у Вас мышечная боль? (yes/no): "} ]
+    },
+	"ask-irritability": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["irritability", "eq", "null"] ],
+        "actions": [ {"func": "yes_or_no", "arg_1": "irritability", "arg_2": "Есть ли у Вас раздражительность? (yes/no): "} ]
+    },
+
+
+
+    "RULE-1-diagnosis-of-pancreatitis": {
+        "conditions": [ ["solution", "eq", "null"], "and", ["temp", ">", 35], "and", ["temp", "<", 37], "and", ["stomach", "eq", "no"], "and", ["diarrhea", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "pancreatitis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - панкреатит"}
+         ]
+    },
+    "RULE-2-diagnosis-of-gastritis": {
+        "conditions": [ ["temp", ">", 35], "and", ["temp", "<", 37], "and", ["stomach", "eq", "yes"], "and", ["diarrhea", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "gastritis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - гастрит"}
+        ]
+    },
+    "RULE-3-diagnosis-of-covid": {
+        "conditions": [ ["temp", ">", 37], "and", ["temp", "<", 38], "and", ["sense", "eq", "yes"], "and", ["diarrhea", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "covid", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - covid-19"}
+        ]
+    },
+    "RULE-4-diagnosis-of-flu": {
+        "conditions": [ ["temp", ">", 37], "and", ["temp", "<", 38], "and", ["sense", "eq", "no"], "and", ["diarrhea", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "flu", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - грипп"}
+        ]
+    },
+    "RULE-5-diagnosis-of-chemical-burn": {
+        "conditions": [ ["crusts ", "eq", "yes"], "and", ["pain", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "chemical-burn", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - химический ожог"}
+        ]
+    },
+    "RULE-6-diagnosis-of-thermal-burn": {
+        "conditions": [ ["crusts ", "eq", "no"], "and", ["pain", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "thermal-burn", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - термический ожога"}
+        ]
+    },
+    "RULE-7-diagnosis-of-kyphosis": {
+        "conditions": [ ["slouching", "eq", "yes"], "and", ["curvature", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "kyphosis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - кифоз"}
+        ]
+    },
+    "RULE-8-diagnosis-of-scoliosis": {
+        "conditions": [ ["slouching", "eq", "no"], "and", ["curvature", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "scoliosis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - сколиоз"}
+        ]
+    },
+    "RULE-9-diagnosis-of-plaque": {
+        "conditions": [ ["gums", "eq", "yes"], "and", ["changing-color", "eq", "yes"], "and", ["insufficient-thickness", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "plaque", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - зубной налет"}
+        ]
+    },
+    "RULE-10-diagnosis-of-gingivitis": {
+        "conditions": [ ["gums", "eq", "yes"], "and", ["changing-color", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "gingivitis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - гингивит"}
+        ]
+    },
+    "RULE-11-diagnosis-of-hypoplasia": {
+        "conditions": [ ["gums", "eq", "no"], "and", ["changing-color", "eq", "yes"], "and", ["insufficient-thickness", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "hypoplasia", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - гипоплазия"}
+        ]
+    },
+    "RULE-12-diagnosis-of-malocclusion": {
+        "conditions": [ ["gums", "eq", "no"], "or", ["slouching", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "malocclusion", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - неправильный прикус"}
+        ]
+    },
+    "RULE-13-diagnosis-of-midlife-crisis": {
+        "conditions": [ ["fatigue", "eq", "yes"], "and", ["appetite", "eq", "no"], "and", ["muscle-pain", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "midlife-crisis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - кризис среднего возраста"}
+        ]
+    },
+    "RULE-14-diagnosis-of-mild-neurosis": {
+        "conditions": [ ["fatigue", "eq", "yes"], "and", ["appetite", "eq", "no"], "and", ["muscle-pain", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "mild-neurosis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - легкий невроз"}
+        ]
+    },
+    "RULE-15-diagnosis-of-depression": {
+        "conditions": [ ["fatigue", "eq", "yes"], "and", ["appetite", "eq", "yes"], "or", ["irritability", "eq", "no"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "depression", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - депрессия"}
+        ]
+    },
+	"RULE-16-diagnosis-of-psychosis": {
+        "conditions": [ ["fatigue", "eq", "no"], "and", ["appetite", "eq", "yes"], "or", ["irritability", "eq", "yes"] ],
+        "actions": [
+            {"func": "assert", "arg_1": "psychosis", "arg_2": "yes"},
+            {"func": "print", "arg_1": "Ваш диагноз - психоз"}
+        ]
+    }
+}
